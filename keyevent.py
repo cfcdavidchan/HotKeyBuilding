@@ -210,17 +210,74 @@ def saving(event):
     to_55 = to_ent55.get()
 
     btn_text.set("saved")
-    mbutton.pack()
+    mGui.update()
 
-def quit(event):    
-    mGui.quit()
+def go(event):
+    btn_text2.set("running")
+    mGui.update()
+
+    ###########################
+    ### run the message box ###
+    ###########################
+    try:
+        print (from_11, '------>', to_11)
+        print (from_12, '------>', to_12)
+        print (from_13, '------>', to_13)
+        print (from_14, '------>', to_14)
+        print (from_15, '------>', to_15)
+
+        print (from_21, '------>', to_21)
+        print (from_22, '------>', to_22)
+        print (from_23, '------>', to_23)
+        print (from_24, '------>', to_25)
+        print (from_24, '------>', to_25)
+
+        print (from_31, '------>', to_31)
+        print (from_32, '------>', to_32)
+        print (from_33, '------>', to_33)
+        print (from_34, '------>', to_34)
+        print (from_35, '------>', to_35)
+
+        print (from_41, '------>', to_41)
+        print (from_42, '------>', to_42)
+        print (from_43, '------>', to_43)
+        print (from_44, '------>', to_44)
+        print (from_45, '------>', to_45)
+
+        print (from_51, '------>', to_51)
+        print (from_52, '------>', to_52)
+        print (from_53, '------>', to_53)
+        print (from_54, '------>', to_54)
+        print (from_55, '------>', to_55)
+
+    except:
+        pass
+    ################################
+    ### run the keyboard control ###
+    ################################
+    lis = keyboard.Listener(on_press=on_press)
+    lis.start()  # start to listen on a separate thread
+    lis.join()  # no this if main thread is polling self.keys
+
+    ################################
+    ### run the keyboard control ###
+    ################################
+    begining
+
+def begining(event):
+    btn_text.set("save")
+    btn_text2.set("go")
+    mGui.update()
+
 
 def master_quit(event):
     mGui.destroy()
     sys.exit()
-######################################
-### called all the necessary class ###
-######################################
+
+
+#############################################
+### called all the necessary tkinterclass ###
+#############################################
 mGui = tk.Tk()
 input = tk.StringVar()
 result = tk.StringVar()
@@ -378,7 +435,6 @@ from_ent35.grid(row=9, column=6)
 tk.Label(frame, text='To').grid(row=8, column=7)
 to_ent35 = tk.Entry(frame,width=15)
 to_ent35.grid(row=9, column=7)
-
 ### Separator ###
 sep31 = ttk.Separator(frame, orient="vertical")
 sep32 = ttk.Separator(frame, orient="vertical")
@@ -434,7 +490,6 @@ from_ent45.grid(row=9, column=9)
 tk.Label(frame, text='To').grid(row=8, column=10)
 to_ent45 = tk.Entry(frame,width=15)
 to_ent45.grid(row=9, column=10)
-
 ### Separator ###
 sep41 = ttk.Separator(frame, orient="vertical")
 sep42 = ttk.Separator(frame, orient="vertical")
@@ -491,69 +546,33 @@ tk.Label(frame, text='To').grid(row=8, column=13)
 to_ent55 = tk.Entry(frame,width=15)
 to_ent55.grid(row=9, column=13)
 ################################################
+
+################################################
 result.set('Welcome!!!, Press Esc to leave')
 textlabel =  tk.Label(mGui,textvariable = result,font=('',14))
 textlabel.pack()
+################################################
+
 
 ################################################
 ### getting the result from click and return ###
 ################################################
 btn_text = tk.StringVar()
-mGui.bind('<Return>', saving)
+#mGui.bind('<Return>', saving)
 mbutton = tk.Button(mGui,height=2, width=20, textvariable=btn_text,font=('',15))
 mbutton.bind('<Button-1>', saving)
 btn_text.set("save")
 mbutton.pack()
 
-mGui.bind('<Escape>', master_quit)
-mbutton2 = tk.Button(mGui,height=2, width=20, text='GO',font=('',10))
-mbutton2.bind('<Button-1>', quit)
+mGui.bind('<Escape>', begining)
+btn_text2 = tk.StringVar()
+btn_text2.set("go")
+mbutton2 = tk.Button(mGui,height=2, width=20, textvariable=btn_text2,font=('',12))
+mbutton2.bind('<Button-1>', go)
+#btn_text2.set("running")
 mbutton2.pack()
 
-###########################
-### run the message box ###
-###########################
+#######################
+### Running Tkinter ###
+#######################
 mGui.mainloop()
-try:
-    print (from_11,'------>',to_11)
-    print (from_12,'------>',to_12)
-    print (from_13,'------>',to_13)
-    print (from_14,'------>',to_14)
-    print (from_15,'------>',to_15)
-
-    print (from_21,'------>',to_21)
-    print (from_22,'------>',to_22)
-    print (from_23,'------>',to_23)
-    print (from_24,'------>',to_25)
-    print (from_24,'------>',to_25)
-
-    print (from_31,'------>',to_31)
-    print (from_32,'------>',to_32)
-    print (from_33,'------>',to_33)
-    print (from_34,'------>',to_34)
-    print (from_35,'------>',to_35)
-
-    print (from_41,'------>',to_41)
-    print (from_42,'------>',to_42)
-    print (from_43,'------>',to_43)
-    print (from_44,'------>',to_44)
-    print (from_45,'------>',to_45)
-
-    print (from_51,'------>',to_51)
-    print (from_52,'------>',to_52)
-    print (from_53,'------>',to_53)
-    print (from_54,'------>',to_54)
-    print (from_55,'------>',to_55)
-
-except:
-    pass
-################################
-### run the keyboard control ###
-################################
-
-lis = keyboard.Listener(on_press=on_press)
-lis.start() # start to listen on a separate thread
-lis.join() # no this if main thread is polling self.keys
-
-mGui.destroy()
-
